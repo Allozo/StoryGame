@@ -1,7 +1,9 @@
+from typing import Optional
+
 import pytest
 
 from storygame.parser_mermaid import ParserMermaid
-from typing import Optional
+
 
 @pytest.mark.parametrize(
     "node, answer",
@@ -42,6 +44,7 @@ def test_parse_arrow(arrow: str, answer: dict[str, str]):
         "text_arrow": answer["text_arrow"]
     }
 
+
 @pytest.mark.parametrize(
     "line, answer",
     [
@@ -53,8 +56,8 @@ def test_parse_arrow(arrow: str, answer: dict[str, str]):
         ("A[text] -->|text| B", ("A[text]", " -->|text| ", "B")),
         ("A[text] --> B[text]", ("A[text]", " --> ", "B[text]")),
         ("A --> B", ("A", " --> ", "B")),
-        ("ASD", None)
-    ]
+        ("ASD", None),
+    ],
 )
 def test_parse_line(line: str, answer: Optional[tuple[str, str, str]]):
     res = ParserMermaid.parse_line(line)
