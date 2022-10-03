@@ -43,7 +43,7 @@ arrow_without_text = r" *--> *"
 
 class ParserMermaid:
     @staticmethod
-    def create_list_pattern() -> list[str]:
+    def create_list_pattern() -> list[str]:  # pytest: no-coverage
         """
         Будем парсить следующие случаи
 
