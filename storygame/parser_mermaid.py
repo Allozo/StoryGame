@@ -49,13 +49,13 @@ class ParserMermaid:
         """
         Будем парсить следующие случаи
 
-        1. A[Christmas] -->|Get money| B[Go shopping]
-        2. A[Christmas] -->|Get money| B
-        3. A[Christmas] --> B[Go shopping]
-        4. A[Christmas] --> B
-        5. A -->|Get money| B[Go shopping]
-        6. A -->|Get money| B
-        7. A --> B[Go shopping]
+        1. A[text] -->|text| B[text]
+        2. A[text] -->|text| B
+        3. A[text] --> B[text]
+        4. A[text] --> B
+        5. A -->|text| B[text]
+        6. A -->|text| B
+        7. A --> B[text]
         8. A --> B
         """
 
