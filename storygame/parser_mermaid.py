@@ -67,22 +67,6 @@ class ParserMermaid:
         return list_pattern
 
     @staticmethod
-    def preprocessing_line(line: str) -> str:
-        if line[-1] == '\n':
-            line = line[:-1]
-        return line
-
-    @staticmethod
-    def is_correct_line(line: str) -> bool:
-        if 'graph TD' in line:
-            return False
-
-        if line == '\n':
-            return False
-
-        return True
-
-    @staticmethod
     def parse_node(node: str) -> dict[str, str]:
         match_node_without_text = re.search(name_node_without_text, node)
 

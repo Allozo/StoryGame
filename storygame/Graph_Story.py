@@ -68,13 +68,9 @@ class Graph_Story:
     def parse_mermaid_file_story(self, file_name: str) -> None:
         with Path(file_name).open(encoding='UTF-8') as file:
             for line in file:
-                if not mparse.is_correct_line(line):
-                    continue
-
-                line = mparse.preprocessing_line(line)
-
                 node_arrow_node = mparse.parse_line(line)
 
+                # Если нет ничего, что подошло бы шаблонам
                 if node_arrow_node is None:
                     continue
 
