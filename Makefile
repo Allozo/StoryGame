@@ -46,14 +46,14 @@ endif
 format: ## Formats all files
 ifeq ($(OS), Windows_NT)
 	$(VENV)/Scripts/isort $(CODE)
-	$(VENV)/Scripts/black --skip-string-normalization $(CODE)
 	$(VENV)/Scripts/autoflake --recursive --in-place --remove-all-unused-imports $(CODE)
 	$(VENV)/Scripts/unify --in-place --recursive $(CODE)
+	$(VENV)/Scripts/black $(CODE)
 else
 	$(VENV)/bin/isort $(CODE)
-	$(VENV)/bin/black --skip-string-normalization $(CODE)
 	$(VENV)/bin/autoflake --recursive --in-place --remove-all-unused-imports $(CODE)
 	$(VENV)/bin/unify --in-place --recursive $(CODE)
+	$(VENV)/bin/black $(CODE)
 endif
 
 

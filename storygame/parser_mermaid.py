@@ -3,42 +3,42 @@ from typing import Optional
 
 # В тексте нельзя использовать символы "[" и "]"
 symbol_in_text = [
-    r'\w',
-    ' ',
-    '\\',
-    '/',
-    ',',
-    '.',
-    '?',
-    ';',
-    ':',
+    r"\w",
+    " ",
+    "\\",
+    "/",
+    ",",
+    ".",
+    "?",
+    ";",
+    ":",
     "'",
     '"',
-    '|',
-    '(',
-    ')',
-    '!',
-    '@',
-    '#',
-    '№',
-    '$',
-    '%',
-    '^',
-    '&',
-    '*',
-    '+',
-    '-',
-    '=',
-    '_',
-    '{',
-    '}',
+    "|",
+    "(",
+    ")",
+    "!",
+    "@",
+    "#",
+    "№",
+    "$",
+    "%",
+    "^",
+    "&",
+    "*",
+    "+",
+    "-",
+    "=",
+    "_",
+    "{",
+    "}",
 ]
-text_in_arrow_and_node = '|\\'.join(symbol_in_text)
+text_in_arrow_and_node = "|\\".join(symbol_in_text)
 
-name_node_without_text = r'\w+'
-name_node_with_text = rf'\w+\[[{text_in_arrow_and_node}]+\]'
-arrow_with_text = rf' *-->\|[{text_in_arrow_and_node}]*\| *'
-arrow_without_text = r' *--> *'
+name_node_without_text = r"\w+"
+name_node_with_text = rf"\w+\[[{text_in_arrow_and_node}]+\]"
+arrow_with_text = rf" *-->\|[{text_in_arrow_and_node}]*\| *"
+arrow_without_text = r" *--> *"
 
 
 class ParserMermaid:
@@ -71,29 +71,29 @@ class ParserMermaid:
         match_node_without_text = re.search(name_node_without_text, node)
 
         # Получаем имя (его мы получили из регулярки без скобок)
-        node_name = ''
+        node_name = ""
         if match_node_without_text is not None:
             node_name = match_node_without_text.group(0)
 
         # Если вершина с текстом в [], получим текст в скобках
-        re_node_with_text = rf'\w+\[([{text_in_arrow_and_node}]+)\]'
+        re_node_with_text = rf"\w+\[([{text_in_arrow_and_node}]+)\]"
 
         search_text_in_node = re.search(re_node_with_text, node)
-        text_in_node = ''
+        text_in_node = ""
         if search_text_in_node is not None:
             text_in_node = search_text_in_node.group(1)
 
-        return {'node_name': node_name, 'node_text': text_in_node}
+        return {"node_name": node_name, "node_text": text_in_node}
 
     @staticmethod
     def parse_arrow(arrow: str) -> dict[str, str]:
-        arrow_with_text = rf' *-->\|([{text_in_arrow_and_node}]*)\| *'
+        arrow_with_text = rf" *-->\|([{text_in_arrow_and_node}]*)\| *"
         search_text_arrow = re.search(arrow_with_text, arrow)
-        text_arrow = ''
+        text_arrow = ""
         if search_text_arrow is not None:
             text_arrow = search_text_arrow.group(1)
 
-        return {'text_arrow': text_arrow}
+        return {"text_arrow": text_arrow}
 
     @staticmethod
     def parse_line(line: str) -> Optional[tuple[str, str, str]]:
