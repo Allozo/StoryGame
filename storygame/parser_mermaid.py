@@ -85,7 +85,7 @@ class ParserMermaid:
         return True
 
     @staticmethod
-    def parse_node(node: str):
+    def parse_node(node: str) -> dict[str, str]:
         match_node_with_text = re.search(name_node_with_text, node)
         match_node_without_text = re.search(name_node_without_text, node).group(0)
 
@@ -103,7 +103,7 @@ class ParserMermaid:
         return {"node_name": node_name, "node_text": text_in_node}
 
     @staticmethod
-    def parse_arrow(arrow: str) -> Optional[str]:
+    def parse_arrow(arrow: str) -> dict[str, str]:
         arrow_with_text = f" *-->\|([{text_in_arrow_and_node}]*)\| *"
         text_arrow = re.search(arrow_with_text, arrow)
         if text_arrow is not None:

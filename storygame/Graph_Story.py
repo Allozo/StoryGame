@@ -59,7 +59,7 @@ class Graph_Story:
 
         self.dict_node[node_left_name].choice_list.append(choice)
 
-    def parse_mermaid_file_story(self, file_name: str):
+    def parse_mermaid_file_story(self, file_name: str) -> None:
         with Path(file_name).open() as file:
             for line in file:
                 if not mparse.is_correct_line(line):
@@ -86,7 +86,7 @@ class Graph_Story:
                     dict_right_node["node_name"],
                 )
 
-    def print_graph(self):
+    def print_graph(self) -> str:
         res = ""
         for node in self.dict_node.values():
             for choice in node.choice_list:
